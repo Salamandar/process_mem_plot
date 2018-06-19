@@ -1,0 +1,27 @@
+
+set term png small size 800,600
+set output "mem.png"
+
+set title "Cinnamon memory usage"
+
+set xlabel "Date"
+set timefmt "%s"
+set format x "%d/%m %H:%M"
+set xdata time
+set xtics rotate
+
+set ylabel "VSZ"
+set y2label "%MEM"
+
+set ytics nomirror
+set y2tics nomirror in
+
+set yrange [0:*]
+set y2range [0:*]
+
+set grid
+
+plot  "mem.log" using 1:5 with lines axes x1y1 title "RSS", \
+      "mem.log" using 1:3 with lines axes x1y2 title "%MEM"
+
+      # "mem.log" using 4 with lines axes x1y1 title "VSZ", \
